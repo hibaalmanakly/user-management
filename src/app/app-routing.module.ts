@@ -1,7 +1,20 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-const routes: Routes = [];
+import {AppComponent} from "./app.component";
+import {PageNotFoundComponent} from './shared/components/page-not-found/page-not-found.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'register',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
