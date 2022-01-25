@@ -7,7 +7,8 @@ import {PageNotFoundComponent} from './shared/components/page-not-found/page-not
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'register',
+    // component: AppComponent
+    redirectTo: 'auth',
     pathMatch: 'full'
   },
   {
