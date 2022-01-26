@@ -10,11 +10,11 @@ import {PaginationResult} from '../../../../shared/models/pagination-result';
 import {User} from '../../models/response/user';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  selector: 'app-list-users',
+  templateUrl: './list-users.component.html',
+  styleUrls: ['./list-users.component.scss']
 })
-export class ListComponent implements OnInit, AfterViewInit {
+export class ListUsersComponent implements OnInit, AfterViewInit {
 
   listData: PaginationResult<User>;
   originalUsersList: User[];

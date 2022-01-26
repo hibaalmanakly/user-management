@@ -4,14 +4,14 @@ import {CommonModule} from '@angular/common';
 import {UserRoutingModule} from './user-routing.module';
 import {SharedModule} from '../../shared/shared.module';
 import {UserComponent} from './user.component';
-import {ListComponent} from './components/list/list.component';
-import {CreateComponent} from './components/create/create.component';
+import {ListUsersComponent} from './components/list-users/list-users.component';
+import {CreateUserComponent} from './components/create-user/create-user.component';
 
 @NgModule({
   declarations: [
     UserComponent,
-    ListComponent,
-    CreateComponent
+    ListUsersComponent,
+    CreateUserComponent
   ],
   imports: [
     CommonModule,

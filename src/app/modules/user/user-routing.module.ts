@@ -2,8 +2,8 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {UserComponent} from './user.component';
-import {ListComponent} from './components/list/list.component';
-import {CreateComponent} from './components/create/create.component';
+import {ListUsersComponent} from './components/list-users/list-users.component';
+import {CreateUserComponent} from './components/create-user/create-user.component';
 
 const routes: Routes = [
   {
@@ -12,11 +12,11 @@ const routes: Routes = [
     children: [
       {
         path: 'list',
-        component: ListComponent
+        component: ListUsersComponent
       },
       {
         path: 'create',
-        component: CreateComponent
+        component: CreateUserComponent
       },
       {
         path: '',
