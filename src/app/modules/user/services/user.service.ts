@@ -17,10 +17,8 @@ export class UserService {
   /**
    * Get list of users by page number.
    * @param pageNumber Default is 1
-   * @param token Token
    */
-  getAllUsers(pageNumber: number = 1, token: any): Observable<PaginationResult<User>> {
-    return this.http.get<PaginationResult<User>>('http://restapi.adequateshop.com/api/users?page=' + pageNumber,
-      {headers: {'Authorization': 'Bearer ' + token}});
+  getAllUsers(pageNumber: number = 1): Observable<PaginationResult<User>> {
+    return this.http.get<PaginationResult<User>>('http://restapi.adequateshop.com/api/users?page=' + pageNumber);
   }
 }

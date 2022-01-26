@@ -86,16 +86,11 @@ export class ListComponent implements OnInit, AfterViewInit {
    * @private private method
    */
   private getUsers(nextPageNumber = 1) {
-    if (localStorage.getItem('user')) {
-      const token = localStorage.getItem('user') ? localStorage.getItem('user') : '';
-      this.userService.getAllUsers(nextPageNumber, token).subscribe((result) => {
-        this.listData = result;
-        this.originalUsersList = this.listData.data;
-        this.dataSource = new MatTableDataSource(this.originalUsersList);
-        this.dataSource.sort = this.sort;
-      });
-    } else {
-      this.router.navigate(['/auth/login']).then();
-    }
+    this.userService.getAllUsers(nextPageNumber).subscribe((result) => {
+      this.listData = result;
+      this.originalUsersList = this.listData.data;
+      this.dataSource = new MatTableDataSource(this.originalUsersList);
+      this.dataSource.sort = this.sort;
+    });
   }
 }
