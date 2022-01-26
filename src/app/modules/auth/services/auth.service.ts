@@ -21,6 +21,14 @@ export class AuthService {
    * @param payload including name, email and password
    */
   registerNewUser(payload: CreateUserRequest): Observable<ResponseResult<User>> {
-    return this.http.post<ResponseResult<User>>('http://restapi.adequateshop.com/api/authaccount/registration', payload)
+    return this.http.post<ResponseResult<User>>('http://restapi.adequateshop.com/api/authaccount/registration', payload);
+  }
+
+  /**
+   * Login user
+   * @param payload including email and password
+   */
+  login(payload: loginUserRequest): Observable<ResponseResult<User>> {
+    return this.http.post<ResponseResult<User>>('http://restapi.adequateshop.com/api/authaccount/login', payload);
   }
 }

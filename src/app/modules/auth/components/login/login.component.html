@@ -1,1 +1,57 @@
-<p>login works!</p>
+<div *ngIf="formGroup" class="row">
+  <div class="col-12 col-lg-4 offset-lg-4">
+    <mat-card class="example-card">
+      <form [formGroup]="formGroup" (submit)="submit()">
+        <mat-card-title align="center">User Login</mat-card-title>
+        <mat-card-subtitle align="center">
+          If you don't have an account yet please
+          <a [routerLink]="['/auth/register']">click here</a> to create account
+        </mat-card-subtitle>
+
+        <mat-card-content>
+          <div class="mb-3">
+            <mat-form-field appearance="legacy">
+              <mat-icon matUser matPrefix>email</mat-icon>
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email">
+              <mat-error *ngIf="!!(formGroup.get('email')?.touched
+               && formGroup.get('email')?.hasError('required'))">
+                Email is required
+              </mat-error>
+              <mat-error *ngIf="!!(formGroup.get('email')?.touched
+               && formGroup.get('email')?.hasError('email'))">
+                Please use a valid email
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="mb-3">
+            <mat-form-field appearance="legacy">
+              <mat-icon matUser matPrefix>visibility_off</mat-icon>
+              <mat-label>Password</mat-label>
+              <input matInput formControlName="password" type="password">
+              <mat-error *ngIf="!!(formGroup.get('password')?.touched
+                && formGroup.get('password')?.hasError('required'))">
+                Password is required
+              </mat-error>
+              <mat-error *ngIf="!!(formGroup.get('password')?.touched
+                && formGroup.get('password')?.hasError('minlength'))">
+                {{ 'Password should be at least ' +
+              (formGroup.get('password')?.getError('minlength')['requiredLength']) + ' characters'}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div *ngIf="hasError">
+            <p class="text-danger">{{errorMessage}}</p>
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button type="submit" mat-raised-button color="primary">
+            Login
+          </button>
+        </mat-card-actions>
+      </form>
+    </mat-card>
+  </div>
+</div>
