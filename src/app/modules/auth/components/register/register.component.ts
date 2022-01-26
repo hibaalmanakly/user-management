@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {AuthService} from '../../services/auth.service';
-import {CreateUserRequest} from '../../models/request/create-user-request';
+import {RegisterUserRequest} from '../../models/request/register-user-request';
 
 @Component({
   selector: 'app-register',
@@ -38,8 +38,8 @@ export class RegisterComponent implements OnInit {
     this.isUserExist = false;
     this.formGroup.markAllAsTouched();
     if (this.formGroup.valid) {
-      const formValue = <CreateUserRequest>this.formGroup.value;
-      const payload: CreateUserRequest = {
+      const formValue = <RegisterUserRequest>this.formGroup.value;
+      const payload: RegisterUserRequest = {
         name: formValue.name,
         email: formValue.email,
         password: formValue.password

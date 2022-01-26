@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 import {ResponseResult} from '../../../shared/models/response-result';
-import {CreateUserRequest} from '../models/request/create-user-request';
+import {RegisterUserRequest} from '../models/request/register-user-request';
 import {loginUserRequest} from '../models/request/login-user-request';
 import {User} from '../models/response/user';
 
@@ -20,7 +20,7 @@ export class AuthService {
    * Register new user
    * @param payload including name, email and password
    */
-  registerNewUser(payload: CreateUserRequest): Observable<ResponseResult<User>> {
+  registerNewUser(payload: RegisterUserRequest): Observable<ResponseResult<User>> {
     return this.http.post<ResponseResult<User>>('http://restapi.adequateshop.com/api/authaccount/registration', payload);
   }
 
