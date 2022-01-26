@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
 import {AuthService} from '../../services/auth.service';
-import {loginUserRequest} from '../../models/login-user-request';
+import {loginUserRequest} from '../../models/request/login-user-request';
 
 @Component({
   selector: 'app-login',

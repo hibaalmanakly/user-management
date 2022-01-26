@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
-import {CreateUserRequest} from '../models/create-user-request';
-import {loginUserRequest} from '../models/login-user-request';
-import {ResponseResult} from 'src/app/shared/models/response-result';
-import {User} from 'src/app/shared/models/user';
+import {ResponseResult} from '../../../shared/models/response-result';
+import {CreateUserRequest} from '../models/request/create-user-request';
+import {loginUserRequest} from '../models/request/login-user-request';
+import {User} from '../models/response/user';
 
 
 @Injectable({
