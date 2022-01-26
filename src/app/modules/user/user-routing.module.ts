@@ -11,8 +11,8 @@ const routes: Routes = [
     component: UserComponent,
     children: [
       {
-        path: 'user-list',
-        component: ListComponent,
+        path: 'list',
+        component: ListComponent
       },
       {
         path: 'create',
@@ -20,7 +20,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'user-list',
+        redirectTo: 'list',
         pathMatch: 'full'
       }
     ]

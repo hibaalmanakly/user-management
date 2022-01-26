@@ -1,7 +1,7 @@
 export interface User {
   createdat?: string;
-  id: number;
   email: string;
+  id: number;
   location?: string;
   name: string;
   profilepicture?: string;
