@@ -1,6 +1,6 @@
 <div *ngIf="formGroup" class="row">
   <div class="col-12 col-lg-4 offset-lg-4">
-    <mat-card class="example-card">
+    <mat-card class="login-card">
       <form [formGroup]="formGroup" (submit)="submit()">
         <mat-card-title align="center">User Login</mat-card-title>
         <mat-card-subtitle align="center">
@@ -9,6 +9,7 @@
         </mat-card-subtitle>
 
         <mat-card-content>
+          <!-- Email Field -->
           <div class="mb-3">
             <mat-form-field appearance="legacy">
               <mat-icon matUser matPrefix>email</mat-icon>
@@ -24,6 +25,7 @@
               </mat-error>
             </mat-form-field>
           </div>
+          <!-- Password Field -->
           <div class="mb-3">
             <mat-form-field appearance="legacy">
               <mat-icon matUser matPrefix>visibility_off</mat-icon>
@@ -46,6 +48,7 @@
           </div>
         </mat-card-content>
 
+        <!-- Submit Button -->
         <mat-card-actions>
           <button type="submit" mat-raised-button color="primary">
             Login

@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
       this.authService.login(payload)
         .subscribe((result) => {
           if (result.code === 0) {
+            localStorage.setItem('user', result.data.Token)
             this.router.navigate(['/user']).then();
           } else {
             this.hasError = true;
