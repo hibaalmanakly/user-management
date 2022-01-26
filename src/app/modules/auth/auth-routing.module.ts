@@ -22,9 +22,9 @@ const routes: Routes = [
         path: '',
         redirectTo: 'register',
         pathMatch: 'full'
-      },
+      }
     ]
-  },
+  }
 ];
 
 @NgModule({

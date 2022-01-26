@@ -18,8 +18,8 @@ const angular: any[] = [
   MatInputModule,
   MatIconModule,
   MatCardModule,
-  MatButtonModule,
-]
+  MatButtonModule
+];
 
 @NgModule({
   declarations: [
@@ -34,7 +34,7 @@ const angular: any[] = [
   exports: [
     ReactiveFormsModule,
     angular,
-    PageNotFoundComponent,
+    PageNotFoundComponent
   ]
 })
 export class SharedModule {

@@ -1,5 +1,5 @@
 export interface User {
-  $id: string;
+  $id?: string;
   Id: number;
   Name: string;
   Email: string;

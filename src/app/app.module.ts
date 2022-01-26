@@ -10,7 +10,7 @@ import {UserModule} from './modules/user/user.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +18,7 @@ import {UserModule} from './modules/user/user.module';
     AuthModule,
     UserModule,
     SharedModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

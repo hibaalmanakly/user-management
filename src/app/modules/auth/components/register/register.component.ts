@@ -30,8 +30,8 @@ export class RegisterComponent implements OnInit {
     this.formGroup = this.fb.group({
       name: ['Hiba', Validators.required],
       email: ['hiba@gmail.com', [Validators.required, Validators.email]],
-      password: ['124456', [Validators.required, Validators.minLength(6)]],
-    })
+      password: ['123456', [Validators.required, Validators.minLength(6)]]
+    });
   }
 
   submit(): void {
@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
         name: formValue.name,
         email: formValue.email,
         password: formValue.password
-      }
+      };
       this.authService.registerNewUser(payload)
         .subscribe((result) => {
           if (result.code === 0) {
@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
             this.isUserExist = true;
             this.errorMessage = result.message;
           }
-        })
+        });
     }
   }
 }

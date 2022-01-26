@@ -1,5 +1,5 @@
 export interface ResponseResult<T> {
-  $id: string;
+  $id?: string;
   code: number;
   message: string;
   data: T

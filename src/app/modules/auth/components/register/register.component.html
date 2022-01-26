@@ -40,7 +40,7 @@
             <mat-form-field appearance="legacy">
               <mat-icon matUser matPrefix>visibility_off</mat-icon>
               <mat-label>Password</mat-label>
-              <input matInput formControlName="password">
+              <input matInput formControlName="password" type="password">
               <mat-error *ngIf="!!(formGroup.get('password')?.touched
                 && formGroup.get('password')?.hasError('required'))">
                 Password is required
@@ -58,10 +58,7 @@
           </div>
         </mat-card-content>
 
-        <mat-card-actions align="end">
-          <button [routerLink]="['/auth/login']" mat-raised-button>
-            Login
-          </button>
+        <mat-card-actions>
           <button type="submit" mat-raised-button color="primary">
             Register
           </button>
