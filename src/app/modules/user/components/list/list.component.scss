@@ -1,0 +1,29 @@
+:host ::ng-deep {
+  .mat-table {
+    width: 100%;
+  }
+
+  th.mat-header-cell {
+    width: 20%;
+  }
+
+  img.mat-card-image.user-picture {
+    width: 2rem;
+    height: 2rem;
+    margin: 0;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .mat-header-row {
+    background: #e5e4e4;
+  }
+
+  .mat-row:nth-child(2n+1) {
+    background-color: #ffffff;
+  }
+
+  .mat-row:not(:nth-child(2n+1)) {
+    background-color: #f3f3f3;
+  }
+}
