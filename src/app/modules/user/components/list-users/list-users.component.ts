@@ -1,12 +1,20 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort, MatSortable, Sort} from '@angular/material/sort';
 import {PageEvent} from '@angular/material/paginator';
+import {Subscription} from 'rxjs';
+import {Store} from '@ngrx/store';
+
+import {State} from '../../store/reducers/users.reducer';
+import {getError, getUsersList} from '../../store/selectors/users-selector';
+import {UserAction} from '../../store/actions';
 
 import {CommonService} from '../../../../shared/services/common.service';
-import {UserService} from '../../services/user.service';
+import {ModalService} from '../../../../shared/services/modal.service';
+import {ConfirmationComponent} from '../../../../shared/components/confirmation/confirmation.component';
 import {PaginationResult} from '../../../../shared/models/pagination-result';
+import {UserFormComponent} from '../user-form/user-form.component';
 import {User} from '../../models/response/user';
 
 @Component({
@@ -14,27 +22,59 @@ import {User} from '../../models/response/user';
   templateUrl: './list-users.component.html',
   styleUrls: ['./list-users.component.scss']
 })
-export class ListUsersComponent implements OnInit, AfterViewInit {
+export class ListUsersComponent implements OnInit, OnDestroy {
 
   listData: PaginationResult<User>;
   originalUsersList: User[];
+  sub: Subscription;
+
 
   dataSource: MatTableDataSource<User>;
   displayedColumns: string[] = ['no', 'profilepicture', 'name', 'email', 'id'];
+  errorMessage: string;
 
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private commonService: CommonService,
+              private modalService: ModalService,
               private router: Router,
-              private userService: UserService) {
+              private store: Store<State>) {
   }
 
   ngOnInit(): void {
-
+    this.getUsers();
   }
 
-  ngAfterViewInit() {
-    this.getUsers();
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+
+  createUser() {
+    this.store.dispatch(UserAction.initializeCurrentUser());
+    this.router.navigate(['/user/create']).then();
+  }
+
+  editUser(user: User) {
+    this.errorMessage = '';
+    this.store.dispatch(UserAction.setCurrentUser({user: user}));
+    const dialogRef = this.modalService.open(UserFormComponent);
+    dialogRef.componentInstance.showTitle = false;
+    dialogRef.componentInstance.showButtons = false;
+  }
+
+  deleteUser(user: User) {
+    this.errorMessage = '';
+    this.store.dispatch(UserAction.setCurrentUser({user: user}));
+    const dialogRef = this.modalService.open(ConfirmationComponent);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === true) {
+        this.store.dispatch(UserAction.deleteUser({user: user}));
+        this.sub = this.store.select(getError).subscribe((error: string) => {
+          this.errorMessage = error;
+        });
+      }
+    });
   }
 
   /**
@@ -86,11 +126,14 @@ export class ListUsersComponent implements OnInit, AfterViewInit {
    * @private private method
    */
   private getUsers(nextPageNumber = 1) {
-    this.userService.getAllUsers(nextPageNumber).subscribe((result) => {
-      this.listData = result;
-      this.originalUsersList = this.listData.data;
-      this.dataSource = new MatTableDataSource(this.originalUsersList);
-      this.dataSource.sort = this.sort;
+    this.store.dispatch(UserAction.loadUsersList({pageNumber: nextPageNumber}));
+    this.sub = this.store.select(getUsersList).subscribe((result) => {
+      if (result) {
+        this.listData = result;
+        this.originalUsersList = result.data;
+        this.dataSource = new MatTableDataSource(this.originalUsersList);
+        this.dataSource.sort = this.sort;
+      }
     });
   }
 }

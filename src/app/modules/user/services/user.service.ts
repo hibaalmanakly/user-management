@@ -3,9 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 import {PaginationResult} from '../../../shared/models/pagination-result';
-import {CreateUserRequest} from '../models/request/create-user-request';
 import {User} from '../models/response/user';
-
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +25,24 @@ export class UserService {
    * Create new user
    * @param payload including name, email and location
    */
-  createUser(payload: CreateUserRequest): Observable<User> {
+  createUser(payload: User): Observable<User> {
     return this.http.post<User>('http://restapi.adequateshop.com/api/users', payload);
   }
+
+  /**
+   * Update user details
+   * @param payload
+   */
+  editUser(payload: User): Observable<User> {
+    return this.http.put<User>('http://restapi.adequateshop.com/api/users/' + payload.id, payload);
+  }
+
+  /**
+   * Delete user by user Id
+   * @param userId
+   */
+  deleteUser(userId: number): Observable<User> {
+    return this.http.delete<User>(`http://restapi.adequateshop.com/api/users/${userId}`);
+  }
+
 }

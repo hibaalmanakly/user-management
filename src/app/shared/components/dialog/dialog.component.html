@@ -1,0 +1,8 @@
+<h1 *ngIf="showTitle" mat-dialog-title>Confirmation</h1>
+<div mat-dialog-content>
+  <ng-template #target></ng-template>
+</div>
+<div *ngIf="showButtons" mat-dialog-actions>
+  <button mat-raised-button (click)="cancel()" cdkFocusInitial>Cancel</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">Confirm</button>
+</div>

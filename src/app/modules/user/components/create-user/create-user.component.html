@@ -1,69 +1,8 @@
-<div *ngIf="formGroup" class="row">
+<div class="row">
   <div class="col-12 col-lg-4 offset-lg-4">
-    <mat-card class="login-card">
-      <form [formGroup]="formGroup" (submit)="submit()">
-        <mat-card-title align="center">Create User</mat-card-title>
-        <mat-card-subtitle align="center">
-          <a [routerLink]="['/user/list']">Back</a>
-        </mat-card-subtitle>
-
-        <mat-card-content>
-          <!-- Name Field -->
-          <div class="mb-3">
-            <mat-form-field appearance="legacy">
-              <mat-icon matUser matPrefix>account_box</mat-icon>
-              <mat-label>Name</mat-label>
-              <input matInput formControlName="name">
-              <mat-error *ngIf="!!(formGroup.get('name')?.touched
-               && formGroup.get('name')?.hasError('required'))">
-                Name is required
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <!-- Email Field -->
-          <div class="mb-3">
-            <mat-form-field appearance="legacy">
-              <mat-icon matUser matPrefix>email</mat-icon>
-              <mat-label>Email</mat-label>
-              <input matInput formControlName="email">
-              <mat-error *ngIf="!!(formGroup.get('email')?.touched
-               && formGroup.get('email')?.hasError('required'))">
-                Email is required
-              </mat-error>
-              <mat-error *ngIf="!!(formGroup.get('email')?.touched
-               && formGroup.get('email')?.hasError('email'))">
-                Please use a valid email
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <!-- Location Field -->
-          <div class="mb-3">
-            <mat-form-field appearance="legacy">
-              <mat-icon matUser matPrefix>location_on</mat-icon>
-              <mat-label>Location</mat-label>
-              <input matInput formControlName="location">
-              <mat-error *ngIf="!!(formGroup.get('location')?.touched
-               && formGroup.get('location')?.hasError('required'))">
-                Location is required
-              </mat-error>
-            </mat-form-field>
-          </div>
-
-          <div *ngIf="hasError">
-            <p class="text-danger">{{errorMessage}}</p>
-          </div>
-          <div *ngIf="isCreated">
-            <p class="text-success">User is created successfully.</p>
-          </div>
-        </mat-card-content>
-
-        <!-- Submit Button -->
-        <mat-card-actions>
-          <button type="submit" mat-raised-button color="primary">
-            Create
-          </button>
-        </mat-card-actions>
-      </form>
+    <mat-card class="create-user-card">
+      <app-user-form [title]="'Create User'"
+                     [isCreateMode]="true"></app-user-form>
     </mat-card>
   </div>
 </div>

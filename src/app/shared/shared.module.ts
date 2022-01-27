@@ -12,14 +12,17 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSortModule} from '@angular/material/sort';
+import {MatDialogModule} from '@angular/material/dialog';
 
-import {SharedComponent} from './shared.component';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
+import {DialogComponent} from './components/dialog/dialog.component';
+import {ConfirmationComponent} from './components/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
-    SharedComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    DialogComponent,
+    ConfirmationComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +36,8 @@ import {PageNotFoundComponent} from './components/page-not-found/page-not-found.
     MatTableModule,
     MatPaginatorModule,
     MatTooltipModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -47,7 +51,10 @@ import {PageNotFoundComponent} from './components/page-not-found/page-not-found.
     MatPaginatorModule,
     MatTooltipModule,
     MatSortModule,
-    PageNotFoundComponent
+    MatDialogModule,
+    PageNotFoundComponent,
+    DialogComponent,
+    ConfirmationComponent
   ]
 })
 export class SharedModule {
