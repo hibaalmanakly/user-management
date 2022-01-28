@@ -6,6 +6,7 @@ import {User} from '../../models/response/user';
 export enum ActionTypes {
   LoadUsers = '[User] Load Users List',
   LoadUsersSuccess = '[User] Success Load Users List',
+  LoadUsersFailure = '[User] Fail Load Users List',
   GetCurrentUser = '[User] Get Current User',
   SetCurrentUser = '[User] Set Current User',
   InitializeCurrentUser = '[User] Initialize Current User'
@@ -19,6 +20,11 @@ export const loadUsersList = createAction(
 export const loadUsersListSuccess = createAction(
   ActionTypes.LoadUsersSuccess,
   props<{ result: PaginationResult<User> }>()
+);
+
+export const loadUsersListFailure = createAction(
+  ActionTypes.LoadUsersFailure,
+  props<{ error: string }>()
 );
 
 export const getCurrentUser = createAction(

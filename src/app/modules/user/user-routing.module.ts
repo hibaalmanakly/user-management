@@ -7,21 +7,16 @@ import {CreateUserComponent} from './components/create-user/create-user.componen
 
 const routes: Routes = [
   {
-    path: 'user',
+    path: '',
     component: UserComponent,
     children: [
       {
-        path: 'list',
+        path: '',
         component: ListUsersComponent
       },
       {
         path: 'create',
         component: CreateUserComponent
-      },
-      {
-        path: '',
-        redirectTo: 'list',
-        pathMatch: 'full'
       }
     ]
   }

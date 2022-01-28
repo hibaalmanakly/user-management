@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
-import {map, mergeMap} from 'rxjs';
+import {catchError, map, mergeMap, of} from 'rxjs';
 
 import {UserService} from '../../services/user.service';
 import {UserAction} from '../actions';
@@ -17,7 +17,8 @@ export class ListUsersEffect {
       ofType(UserAction.loadUsersList),
       mergeMap((action) =>
         this.userService.getAllUsers(action.pageNumber).pipe(
-          map((result) => UserAction.loadUsersListSuccess({result: result}))
+          map((result) => UserAction.loadUsersListSuccess({result: result})),
+          catchError((error) => of(UserAction.loadUsersListFailure({error: error.error})))
         )
       )
     );

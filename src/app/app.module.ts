@@ -9,8 +9,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {SharedModule} from './shared/shared.module';
 import {HeaderInterceptor} from './shared/interceptors/header.interceptor';
 import {AppComponent} from './app.component';
-import {AuthModule} from './modules/auth/auth.module';
-import {UserModule} from './modules/user/user.module';
 
 @NgModule({
   declarations: [
@@ -19,8 +17,6 @@ import {UserModule} from './modules/user/user.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AuthModule,
-    UserModule,
     SharedModule,
     AppRoutingModule,
     StoreModule.forRoot({}),

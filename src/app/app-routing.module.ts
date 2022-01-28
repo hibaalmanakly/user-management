@@ -1,33 +1,25 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {AppComponent} from './app.component';
+import {AuthGuard} from './shared/guards/auth.guard';
+import {ProtectedGuard} from './shared/guards/protected.guard';
 import {PageNotFoundComponent} from './shared/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AppComponent,
     children: [
       {
-        path: 'auth',
-        loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
+        path: '',
+        loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule),
+        canActivate: [AuthGuard]
       },
       {
         path: 'user',
-        loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule)
-      },
-      {
-        path: '',
-        redirectTo: 'auth/login',
-        pathMatch: 'full'
+        loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule),
+        canLoad: [ProtectedGuard]
       }
     ]
-  },
-  {
-    path: '',
-    redirectTo: '/',
-    pathMatch: 'full'
   },
   {
     path: '**',
