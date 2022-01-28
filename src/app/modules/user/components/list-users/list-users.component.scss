@@ -1,4 +1,11 @@
 :host ::ng-deep {
+  @media (max-width: 667px) {
+    .mat-card-content {
+      position: relative;
+      overflow-x: scroll;
+    }
+  }
+
   .mat-table {
     width: 100%;
   }
